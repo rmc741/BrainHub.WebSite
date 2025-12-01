@@ -1,68 +1,183 @@
+/* reset.css
+   Reset moderno e acessível — use no início do seu stylesheet (import/<link> antes dos outros styles).
+   Comentários em português.
+*/
+
+/* Box sizing: facilita o cálculo de larguras/alturas */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remover margens/paddings padrões e definir tipografia base */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* Base do documento */
+html, body {
+  height: 100%;
+  line-height: 1.5; /* boa legibilidade por padrão */
+  -webkit-text-size-adjust: 100%; /* evitar zoom em iOS */
+}
+
+/* Fonte padrão — não força, apenas uma boa configuração inicial */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --base-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --base-font-size: 16px;
+  --base-line-height: 1.5;
 }
 
 body {
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  color: inherit;
+  background: transparent;
+}
+
+/* Tornar imagens e mídias responsivas */
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Links sem estilo por padrão — mantém acessibilidade (focus visível) */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Listas sem marcadores */
+ul, ol {
+  list-style: none;
+}
+
+/* Tabelas: colapsar bordas e herdar fontes */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Tipos de bloco sem espaçamento extra */
+blockquote, q {
+  quotes: none;
+}
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: '';
+  content: none;
+}
+
+/* Formularios e elementos interativos */
+button, input, select, textarea {
+  font: inherit; /* herda tipografia do body */
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+/* Botões: reset básico mantendo acessibilidade */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+/* Inputs: aparência consistente */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+/* Remover autofill yellow background in Chrome (não remove a funcionalidade) */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+}
+
+/* Placeholders herdam cor */
+::placeholder {
+  color: #9aa0a6;
+  opacity: 1; /* Firefox */
+}
+
+/* Manter outlines para foco (acessibilidade). Se quiser customizar, estilize :focus-visible */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 3px solid Highlight;
+  outline-offset: 2px;
+}
+
+/* Melhor experiência para reduz motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
+
+/* Utilities úteis */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Small reset for code/pre */
+code, kbd, pre, samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Helvetica Neue", monospace;
+  font-size: 0.95em;
+}
+
+/* Default root link color for easy customization */
+:root {
+  --link-color: #1a73e8;
+}
+
+a {
+  color: var(--link-color);
+}
+
+/* Helpers finais: garantir que o conteúdo ocupe toda a altura quando necessário */
+#root, #app {
+  min-height: 100%;
+}
+
+/* Fim do reset */
