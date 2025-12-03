@@ -2,3 +2,9 @@
   width: 40px;
   height: auto;
 }
+
+.header,
+.navigation-header{
+   display: flex;
+   align-items: center;
+}
