@@ -1,12 +1,12 @@
 import {Route, Routes} from "react-router-dom";
-// import AppRoutes from "../routes/Routes";
-// import { Home } from "../pages/home/Home";
+import { Home } from "../pages/home/Home";
+import AppRoutes from "../routes/Routes";
 
 const AppRouteConfig = () => {
   return (
     <Routes>
-      <Route path="/" element={<div>Home Page</div>}/>
-      {/* <Route path="*" element={<AppRoutes/>}/> */}
+      <Route path="/" element={<Home/>}/>
+      <Route path="*" element={<AppRoutes/>}/>
     </Routes>
   );
 };
