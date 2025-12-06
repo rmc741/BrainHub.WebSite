@@ -8,10 +8,10 @@ export function Header() {
       </div>
 
       <div className="navigation_header">
-        <a href="#">Home</a>
-        <a href="#">Artigos</a>
-        <a href="#">Sobre Nós</a>
-        <a href="#">Contato</a>
+        <a href="/">Home</a>
+        <a href="artigos">Artigos</a>
+        <a href="sobre-nos">Sobre Nós</a>
+        <a href="contato">Contato</a>
       </div>
     </div>
   )

@@ -4,7 +4,19 @@
 }
 
 .header,
-.navigation-header{
+.navigation_header{
    display: flex;
    align-items: center;
+}
+
+.header {
+   background-color: #fff9a4;
+   box-shadow: 1px 1px 4px #000000;
+   height: 56px;
+   justify-content: space-between;
+   padding: 0 20px;
+}
+
+.navigation_header{
+   gap: 20px;
 }
