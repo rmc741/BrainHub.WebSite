@@ -1,0 +1,138 @@
+BrainHub - Contexto de continuidade
+
+Data deste resumo: 2026-03-16
+
+Projetos
+- Front-end: D:\Projetos\BrainHub.WebSite
+- Back-end: D:\Projetos\BrainHub.Api
+
+Objetivo do produto
+- Criar uma plataforma/forum de artigos.
+- Usuarios poderao ler artigos.
+- Usuarios cadastrados poderao criar artigos.
+- Usuarios cadastrados poderao comentar em artigos.
+
+Estado atual do front-end
+- Projeto em React + TypeScript + Vite.
+- Usa React Router.
+- A home atualmente renderiza secoes de Artigos, SobreNos e Contato dentro da propria pagina.
+- O front ja consome artigos da API em:
+  - src/pages/artigos/Artigos.tsx
+- Endpoint usado no front hoje:
+  - https://localhost:7072/api/artigo
+
+Observacoes sobre o front
+- O componente de artigos espera algo parecido com:
+  - id
+  - titulo
+  - resumo
+  - dataPublicacao
+- Existe sinal de problema de codificacao em alguns textos.
+- A estrutura de rotas ainda pode ser simplificada depois.
+
+Estado atual do back-end
+- Projeto em ASP.NET Core + Entity Framework Core + SQLite.
+- Ja existe:
+  - Program.cs configurando DbContext, CORS, Controllers e Swagger
+  - Entidade Artigo
+  - Configuracao ArtigoConfiguration
+  - ArtigoController
+  - ArtigoRepository
+  - Banco SQLite local
+
+Arquivos importantes do back-end
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Program.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Controllers\ArtigoController.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Domain\Artigo.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Data\Repository\ArtigoRepository.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\CreateArtigoDto.cs
+
+Situacao atual do modulo de artigos no back-end
+- GET /api/artigo existe e lista artigos.
+- POST /api/artigo existe no controller, mas ainda nao esta finalizado.
+- CreateArtigoDto esta vazio.
+- ArtigoRepository.CreateArtigo ainda nao foi implementado.
+
+Desalinhamentos entre front e back
+- O front espera "resumo", mas a entidade Artigo atual nao tem esse campo.
+- O front usa algo como dataPublicacao, enquanto o back hoje tem DataCriacao.
+- O back ainda usa Autor como texto livre.
+
+Direcao recomendada para o MVP
+- Comecar pelo back-end.
+- Fechar primeiro o fluxo completo de artigos.
+- Depois adicionar autenticacao.
+- Depois adicionar comentarios.
+
+Plano de MVP sugerido
+
+Sprint 1
+- Finalizar modulo de artigos no back-end
+- Criar artigo
+- Listar artigos
+- Buscar artigo por id
+- Adicionar DTOs de entrada e saida
+- Adicionar validacoes minimas
+- Alinhar contrato entre front e back
+- Ajustar front para listar e ver detalhe de artigo
+
+Sprint 2
+- Cadastro de usuario
+- Login
+- JWT
+- Criacao de artigo apenas por usuario autenticado
+- Associar artigo ao usuario logado
+
+Sprint 3
+- Comentarios em artigos
+- Listar comentarios por artigo
+- Criar comentario autenticado
+- Editar/excluir o proprio comentario
+
+Modelagem sugerida para evitar retrabalho
+
+Usuario
+- Id
+- Nome
+- Email
+- PasswordHash
+- DataCriacao
+
+Artigo
+- Id
+- Titulo
+- Resumo
+- Conteudo
+- AutorId
+- DataCriacao
+
+Comentario
+- Id
+- Conteudo
+- ArtigoId
+- AutorId
+- DataCriacao
+
+Endpoints minimos futuros
+- POST /api/auth/register
+- POST /api/auth/login
+- GET /api/artigo
+- GET /api/artigo/{id}
+- POST /api/artigo
+- PUT /api/artigo/{id}
+- DELETE /api/artigo/{id}
+- GET /api/artigo/{id}/comentarios
+- POST /api/artigo/{id}/comentarios
+
+Prioridade recomendada quando retomar
+1. Finalizar CreateArtigoDto
+2. Implementar CreateArtigo no repositorio
+3. Criar GET /api/artigo/{id}
+4. Decidir se Artigo tera campo Resumo agora
+5. Criar DTOs de resposta
+6. Ajustar front para detalhe de artigo
+7. Depois iniciar autenticacao
+
+Observacao para a proxima conversa
+- Quando eu voltar, quero continuar pelo back-end.
+- O melhor primeiro passo sugerido e finalizar o modulo de Artigos da Sprint 1.
