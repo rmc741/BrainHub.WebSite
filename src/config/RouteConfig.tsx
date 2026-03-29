@@ -1,11 +1,11 @@
 import {Route, Routes} from "react-router-dom";
-import { Home } from "../pages/home/Home";
+import { HomePage } from "../pages/home/HomePage";
 import AppRoutes from "../routes/Routes";
 
 const AppRouteConfig = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home/>}/>
+      <Route path="/" element={<HomePage/>}/>
       <Route path="*" element={<AppRoutes/>}/>
     </Routes>
   );
