@@ -1,4 +1,4 @@
-export function Contato() {
+export function ContatoPage() {
   return (
     <div>
       <h1>Contato</h1>
