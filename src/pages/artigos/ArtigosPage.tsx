@@ -1,4 +1,5 @@
 import { useArticles } from '../../hooks/useArticles'
+import { ArticleCard } from '../../components/articles/ArticleCard'
 
 export function ArtigosPage() {
   const { artigos, loading, erro } = useArticles()
@@ -11,20 +12,14 @@ export function ArtigosPage() {
       <h1>Artigos</h1>
       <p>Explore nossos artigos informativos e inspiradores sobre diversos tópicos.</p>
 
-      <ul>
+      <div>
         {artigos.map(artigo => (
-          <li key={artigo.id}>
-            <h3>{artigo.titulo}</h3>
-            {artigo.resumo && <p>{artigo.resumo}</p>}
-            {artigo.dataPublicacao && (
-              <small>
-                Publicado em{' '}
-                {new Date(artigo.dataPublicacao).toLocaleDateString()}
-              </small>
-            )}
-          </li>
+          <ArticleCard
+            key={artigo.id}
+            article={artigo}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
