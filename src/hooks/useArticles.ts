@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import type { Article } from '../types/Article'
+import type { ArticleListItem } from '../types/Article'
 import { articleService } from '../services/articleService'
 
 export const useArticles = () => {
-  const [artigos, setArtigos] = useState<Article[]>([])
+  const [artigos, setArtigos] = useState<ArticleListItem[]>([])
   const [loading, setLoading] = useState(true)
   const [erro, setErro] = useState<string | null>(null)
 

@@ -1,8 +1,8 @@
 import { API_URL } from '../constants/api'
-import type { Article } from '../types/Article'
+import type { ArticleDetails, ArticleListItem } from '../types/Article'
 
 export const articleService = {
-  getAll: async (): Promise<Article[]> => {
+  getAll: async (): Promise<ArticleListItem[]> => {
     const response = await fetch(`${API_URL}/api/artigo`)
     if (!response.ok) {
       throw new Error('Erro ao buscar artigos')
@@ -10,7 +10,7 @@ export const articleService = {
     return response.json()
   },
 
-  getById: async (id: number): Promise<Article> => {
+  getById: async (id: number): Promise<ArticleDetails> => {
     const response = await fetch(`${API_URL}/api/artigo/${id}`)
     if (!response.ok) {
       throw new Error('Erro ao buscar artigo')

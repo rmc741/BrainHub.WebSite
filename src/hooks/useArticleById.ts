@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import type { Article } from '../types/Article'
+import type { ArticleDetails } from '../types/Article'
 import { articleService } from '../services/articleService'
 
 export const useArticleById = (id: number | undefined) => {
-  const [article, setArticle] = useState<Article | null>(null)
+  const [article, setArticle] = useState<ArticleDetails | null>(null)
   const [loading, setLoading] = useState(true)
   const [erro, setErro] = useState<string | null>(null)
 

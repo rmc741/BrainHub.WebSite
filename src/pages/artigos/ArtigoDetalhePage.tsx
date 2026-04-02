@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useArticleById } from '../../hooks/useArticleById'
 
 export function ArtigoDetalhePage() {
@@ -31,23 +31,25 @@ export function ArtigoDetalhePage() {
           </p>
         )}
 
-        {article.dataPublicacao && (
-          <small style={{
-            color: '#999',
-            display: 'block',
-            marginBottom: '24px'
-          }}>
-            Publicado em {new Date(article.dataPublicacao).toLocaleDateString()}
-          </small>
-        )}
+        <p style={{ color: '#555', marginBottom: '8px' }}>
+          Por {article.autor}
+        </p>
+
+        <small style={{
+          color: '#999',
+          display: 'block',
+          marginBottom: '24px'
+        }}>
+          Publicado em {new Date(article.dataPublicacao).toLocaleDateString('pt-BR')}
+        </small>
 
         <div style={{
-          lineHeight: '1.6',
+          lineHeight: '1.8',
           fontSize: '1.1em',
-          color: '#333'
+          color: '#333',
+          whiteSpace: 'pre-line'
         }}>
-          {/* Aqui vai o conteúdo completo do artigo quando for implementado */}
-          <p>Conteúdo do artigo em breve...</p>
+          <p>{article.conteudo}</p>
         </div>
       </article>
     </div>

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import type { Article } from '../../types/Article'
+import type { ArticleListItem } from '../../types/Article'
 
 interface ArticleCardProps {
-  article: Article
+  article: ArticleListItem
 }
 
 export function ArticleCard({ article }: ArticleCardProps) {
@@ -45,14 +45,12 @@ export function ArticleCard({ article }: ArticleCardProps) {
         </p>
       )}
 
-      {article.dataPublicacao && (
-        <small style={{
-          color: '#999',
-          fontSize: '0.9em'
-        }}>
-          Publicado em {new Date(article.dataPublicacao).toLocaleDateString()}
-        </small>
-      )}
+      <small style={{
+        color: '#999',
+        fontSize: '0.9em'
+      }}>
+        Publicado em {new Date(article.dataPublicacao).toLocaleDateString('pt-BR')}
+      </small>
     </div>
   )
 }
