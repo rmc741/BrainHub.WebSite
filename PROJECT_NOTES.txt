@@ -1,6 +1,6 @@
 BrainHub - Contexto de continuidade
 
-Data deste resumo: 2026-03-16
+Data deste resumo: 2026-03-29
 
 Projetos
 - Front-end: D:\Projetos\BrainHub.WebSite
@@ -8,90 +8,159 @@ Projetos
 
 Objetivo do produto
 - Criar uma plataforma/forum de artigos.
-- Usuarios poderao ler artigos.
-- Usuarios cadastrados poderao criar artigos.
-- Usuarios cadastrados poderao comentar em artigos.
+- Usuários poderão ler artigos.
+- Usuários cadastrados poderão criar artigos.
+- Usuários cadastrados poderão comentar em artigos.
 
-Estado atual do front-end
+Resumo do que já foi feito
+
+Front-end
 - Projeto em React + TypeScript + Vite.
 - Usa React Router.
-- A home atualmente renderiza secoes de Artigos, SobreNos e Contato dentro da propria pagina.
-- O front ja consome artigos da API em:
-  - src/pages/artigos/Artigos.tsx
+- A home atualmente renderiza seções de Artigos, SobreNós e Contato dentro da própria página.
+- Estrutura organizada com services, hooks, types e constants.
+- Componentes reutilizáveis criados (ArticleCard).
+- Navegação completa implementada (lista → detalhe).
+- Variável de ambiente configurada para API URL.
+- Páginas renomeadas com sufixo "Page" para consistência.
+- Artigos consomem API em:
+  - src/pages/artigos/ArtigosPage.tsx
+  - src/pages/artigos/ArtigoDetalhePage.tsx
 - Endpoint usado no front hoje:
-  - https://localhost:7072/api/artigo
+  - https://localhost:7072/api/artigo (GET lista e GET por ID)
 
-Observacoes sobre o front
-- O componente de artigos espera algo parecido com:
-  - id
-  - titulo
-  - resumo
-  - dataPublicacao
-- Existe sinal de problema de codificacao em alguns textos.
+Observações sobre o front
+- O componente de artigos usa ArticleCard reutilizável.
+- Navegação implementada com React Router (useNavigate).
+- Hook useArticleById criado para artigos individuais.
+- Existe sinal de problema de codificação em alguns textos.
 - A estrutura de rotas ainda pode ser simplificada depois.
 
-Estado atual do back-end
+Back-end
 - Projeto em ASP.NET Core + Entity Framework Core + SQLite.
-- Ja existe:
-  - Program.cs configurando DbContext, CORS, Controllers e Swagger
-  - Entidade Artigo
-  - Configuracao ArtigoConfiguration
-  - ArtigoController
-  - ArtigoRepository
-  - Banco SQLite local
+- Program.cs configurando DbContext, CORS, Controllers e Swagger.
+- Entidade Artigo criada e atualizada com o campo Resumo.
+- Configuração ArtigoConfiguration atualizada.
+- ArtigoController criado e melhorado.
+- ArtigoRepository criado e implementado para os fluxos atuais.
+- Banco SQLite local em uso.
 
 Arquivos importantes do back-end
 - D:\Projetos\BrainHub.Api\BrainHub.Api\Program.cs
 - D:\Projetos\BrainHub.Api\BrainHub.Api\Controllers\ArtigoController.cs
 - D:\Projetos\BrainHub.Api\BrainHub.Api\Domain\Artigo.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Domain\EntityConfiguration\ArtigoConfiguration.cs
 - D:\Projetos\BrainHub.Api\BrainHub.Api\Data\Repository\ArtigoRepository.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Data\Interface\IArtigoRepository.cs
 - D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\CreateArtigoDto.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\ArtigoListDto.cs
+- D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\ArtigoDetailsDto.cs
 
-Situacao atual do modulo de artigos no back-end
-- GET /api/artigo existe e lista artigos.
-- POST /api/artigo existe no controller, mas ainda nao esta finalizado.
-- CreateArtigoDto esta vazio.
-- ArtigoRepository.CreateArtigo ainda nao foi implementado.
+Estado atual do módulo de artigos no back-end
+- GET /api/artigo funcionando.
+- GET /api/artigo/{id} funcionando.
+- POST /api/artigo funcionando.
+- CreateArtigoDto preenchido.
+- DTOs de resposta criados.
+- Validações básicas adicionadas no controller.
+- O repositório agora retorna DTOs em vez de expor diretamente a entidade.
 
-Desalinhamentos entre front e back
-- O front espera "resumo", mas a entidade Artigo atual nao tem esse campo.
-- O front usa algo como dataPublicacao, enquanto o back hoje tem DataCriacao.
-- O back ainda usa Autor como texto livre.
+Migration e banco
+- Migration criada:
+  - AddResumoToArtigo
+- Arquivos gerados em:
+  - D:\Projetos\BrainHub.Api\BrainHub.Api\Migrations
+- O banco já foi atualizado com a migration.
+- Foi criado também:
+  - D:\Projetos\BrainHub.Api\dotnet-tools.json
+- O projeto agora usa dotnet-ef como ferramenta local do repositório.
 
-Direcao recomendada para o MVP
-- Comecar pelo back-end.
+Observação importante de ambiente
+- O Visual Studio não iniciava a API porque o antivírus bloqueou o executável.
+- Isso foi resolvido liberando o arquivo no antivírus.
+
+Build e status geral
+- O backend compilou com sucesso com dotnet build.
+- As alterações já foram preparadas para subir na branch dev.
+
+Checklist resumido
+
+Concluído
+- Front-end base criado
+- Rotas iniciais do front
+- Página de artigos consumindo a API
+- Estrutura organizada (services, hooks, types, constants)
+- Componentes reutilizáveis criados (ArticleCard)
+- Navegação completa implementada (lista → detalhe)
+- Página de detalhe do artigo criada
+- Hook useArticleById implementado
+- Variável de ambiente configurada
+- Páginas renomeadas com padrão consistente
+- Back-end base criado
+- DbContext configurado
+- Swagger configurado
+- CORS configurado
+- Entidade Artigo criada
+- Campo Resumo adicionado em Artigo
+- Configuração EF atualizada
+- ArtigoController criado
+- ArtigoRepository criado
+- GET /api/artigo funcionando
+- GET /api/artigo/{id} implementado
+- POST /api/artigo implementado
+- CreateArtigoDto preenchido
+- DTOs de resposta criados
+- Validações básicas adicionadas
+- Migration AddResumoToArtigo gerada
+- Banco atualizado
+- Build validado
+- Bloqueio do antivírus resolvido
+
+Em andamento
+- Consolidar a Sprint 1 no front-end
+- Validar o fluxo completo front + backend com dados reais
+- Implementar conteúdo completo dos artigos no back-end
+
+Próximos passos recomendados
+1. ✅ Criar página de detalhe do artigo no front
+2. ✅ Consumir GET /api/artigo/{id} no front
+3. ✅ Ajustar a navegação para abrir artigo individual
+4. ✅ Mover a URL da API para variável de ambiente
+5. Corrigir textos com problema de codificação
+6. Revisar a estrutura da Home
+7. Adicionar campo "conteúdo" no back-end para artigos completos
+
+Direção recomendada para o MVP
 - Fechar primeiro o fluxo completo de artigos.
-- Depois adicionar autenticacao.
-- Depois adicionar comentarios.
+- Depois adicionar autenticação.
+- Depois adicionar comentários.
 
 Plano de MVP sugerido
 
 Sprint 1
-- Finalizar modulo de artigos no back-end
-- Criar artigo
-- Listar artigos
-- Buscar artigo por id
-- Adicionar DTOs de entrada e saida
-- Adicionar validacoes minimas
-- Alinhar contrato entre front e back
-- Ajustar front para listar e ver detalhe de artigo
+- ✅ Finalizar o fluxo de artigos no front-end
+- ✅ Criar detalhe de artigo
+- ✅ Listar artigos com dados reais da API
+- ✅ Integrar GET /api/artigo/{id}
+- ✅ Organizar configuração da URL da API
 
 Sprint 2
-- Cadastro de usuario
+- Cadastro de usuário
 - Login
 - JWT
-- Criacao de artigo apenas por usuario autenticado
-- Associar artigo ao usuario logado
+- Criação de artigo apenas por usuário autenticado
+- Associar artigo ao usuário logado
 
 Sprint 3
-- Comentarios em artigos
-- Listar comentarios por artigo
-- Criar comentario autenticado
-- Editar/excluir o proprio comentario
+- Comentários em artigos
+- Listar comentários por artigo
+- Criar comentário autenticado
+- Editar/excluir o próprio comentário
+- Editar/excluir o próprio artigo
 
 Modelagem sugerida para evitar retrabalho
 
-Usuario
+Usuário
 - Id
 - Nome
 - Email
@@ -106,14 +175,14 @@ Artigo
 - AutorId
 - DataCriacao
 
-Comentario
+Comentário
 - Id
 - Conteudo
 - ArtigoId
 - AutorId
 - DataCriacao
 
-Endpoints minimos futuros
+Endpoints mínimos futuros
 - POST /api/auth/register
 - POST /api/auth/login
 - GET /api/artigo
@@ -124,15 +193,50 @@ Endpoints minimos futuros
 - GET /api/artigo/{id}/comentarios
 - POST /api/artigo/{id}/comentarios
 
-Prioridade recomendada quando retomar
-1. Finalizar CreateArtigoDto
-2. Implementar CreateArtigo no repositorio
-3. Criar GET /api/artigo/{id}
-4. Decidir se Artigo tera campo Resumo agora
-5. Criar DTOs de resposta
-6. Ajustar front para detalhe de artigo
-7. Depois iniciar autenticacao
+Observação para a próxima conversa
+- Sprint 1 do front-end praticamente concluída!
+- Próximo foco: implementar conteúdo completo dos artigos no back-end
+- Depois disso, partir para autenticação e criação de artigos
 
-Observacao para a proxima conversa
-- Quando eu voltar, quero continuar pelo back-end.
-- O melhor primeiro passo sugerido e finalizar o modulo de Artigos da Sprint 1.
+Atualização de continuidade - 2026-04-01
+
+Status geral
+- Sprint 1 finalizada.
+- Fluxo de artigos concluído de ponta a ponta no front-end e no back-end.
+
+Sprint 1 - fechamento
+- Listagem de artigos funcionando com dados reais da API.
+- Navegação da lista para o detalhe funcionando.
+- Página de detalhe consumindo GET /api/artigo/{id}.
+- Conteúdo completo do artigo sendo exibido no detalhe.
+- Tipagem do front ajustada para refletir os contratos reais da API:
+  - lista usa ArticleListItem
+  - detalhe usa ArticleDetails
+- Problema de texto quebrado no front corrigido nas telas principais.
+- Integração front + back validada para o fluxo atual de artigos.
+
+Sprint 2 - objetivo
+- Cadastro de usuário
+- Login
+- JWT
+- Criação de artigo apenas por usuário autenticado
+- Associar artigo ao usuário logado
+
+Sprint 2 - estado atual
+- Ainda não iniciada em implementação.
+- Back-end ainda não possui entidade Usuario, auth controller, JWT ou relacionamento AutorId em Artigo.
+- Front-end ainda não possui telas, rotas, services ou estado de autenticação.
+
+Sprint 2 - ordem recomendada
+1. Implementar modelagem de Usuario no back-end
+2. Relacionar Artigo com Usuario por AutorId
+3. Configurar autenticação JWT
+4. Criar endpoints de register e login
+5. Proteger POST /api/artigo
+6. Criar fluxo de login/cadastro no front-end
+7. Criar tela de novo artigo autenticada
+8. Validar fluxo completo ponta a ponta
+
+Observação para a próxima conversa
+- Próximo foco: iniciar Sprint 2 pelo back-end
+- Primeiro passo recomendado: criar entidade Usuario, ajustar Artigo para AutorId e preparar autenticação JWT

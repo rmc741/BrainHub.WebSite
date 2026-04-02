@@ -1,14 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import { Artigos } from "../pages/artigos/Artigos";
-import { SobreNos } from "../pages/sobreNos/SobreNos";
-import { Contato } from "../pages/contato/Contato";
+import { ArtigosPage } from "../pages/artigos/ArtigosPage";
+import { ArtigoDetalhePage } from "../pages/artigos/ArtigoDetalhePage";
+import { SobreNosPage } from "../pages/sobreNos/SobreNosPage";
+import { ContatoPage } from "../pages/contato/ContatoPage";
 
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="artigos" element={<Artigos/>} />
-            <Route path="sobre-nos" element={<SobreNos/>} />
-            <Route path="contato" element={<Contato/>} />
+            <Route path="artigos" element={<ArtigosPage/>} />
+            <Route path="artigos/:id" element={<ArtigoDetalhePage/>} />
+            <Route path="sobre-nos" element={<SobreNosPage/>} />
+            <Route path="contato" element={<ContatoPage/>} />
         </Routes>
     );
 }
