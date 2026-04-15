@@ -240,3 +240,69 @@ Sprint 2 - ordem recomendada
 Observação para a próxima conversa
 - Próximo foco: iniciar Sprint 2 pelo back-end
 - Primeiro passo recomendado: criar entidade Usuario, ajustar Artigo para AutorId e preparar autenticação JWT
+
+Atualização de continuidade - 2026-04-14
+
+Status geral
+- Sprint 2 iniciada no back-end.
+- Base de usuários criada.
+- Relacionamento entre artigo e usuário iniciado.
+
+O que foi feito hoje no back-end
+- Entidade `Usuario` criada.
+- Campos atuais de `Usuario`:
+  - `Id`
+  - `Nome`
+  - `Email`
+  - `PasswordHash`
+  - `Ativo`
+  - `DataCriacao`
+- `Email` configurado como único no banco.
+- `Ativo` definido com valor padrão `true`.
+- `Usuario` registrado no `DbContext`.
+- Configuração EF de `Usuario` criada.
+- Migration `AddUsuario` gerada e aplicada.
+
+Relacionamento artigo -> usuário
+- `Artigo` deixou de usar `Autor` como texto na entidade.
+- `Artigo` agora usa `AutorId` como chave estrangeira.
+- Navegação `Artigo.Autor` adicionada.
+- Navegação `Usuario.Artigos` adicionada.
+- Configuração EF do relacionamento criada com `DeleteBehavior.Restrict`.
+- Migration `AddAutorRelationshipToArtigo` gerada e aplicada.
+
+Contrato atual do módulo de artigos
+- `GET /api/artigo` continua disponível.
+- `GET /api/artigo/{id}` continua disponível.
+- `POST /api/artigo` mudou no back-end:
+  - antes recebia `Autor` como texto
+  - agora recebe `AutorId`
+- O retorno de detalhe continua expondo `Autor` como texto, mas agora vindo de `Usuario.Nome`.
+
+Decisão de ambiente tomada hoje
+- Como o projeto ainda está em fase de desenvolvimento, a migration de relacionamento foi simplificada para ajustar apenas a estrutura do banco.
+- A lógica de preservação de dados legados foi removida.
+- O banco SQLite local foi recriado do zero e as migrations foram reaplicadas.
+
+Validações e status
+- `dotnet build` executado com sucesso após as alterações.
+- Banco local atualizado com sucesso.
+
+O que ainda não foi iniciado
+- Configuração de JWT no `Program.cs`
+- Endpoints de autenticação:
+  - `POST /api/auth/register`
+  - `POST /api/auth/login`
+- Proteção do `POST /api/artigo` com autenticação
+- Fluxo de login/cadastro no front-end
+
+Próximo passo recomendado
+1. Configurar autenticação JWT no back-end
+2. Criar endpoints de register e login
+3. Proteger `POST /api/artigo`
+4. Depois integrar autenticação no front-end
+
+Observação para a próxima conversa
+- Sprint 2 já começou pelo back-end.
+- O próximo foco natural é JWT + register/login.
+- A criação autenticada de artigo deve usar o usuário do token, e não confiar no front para definir autor.
