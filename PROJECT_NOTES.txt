@@ -306,3 +306,88 @@ Observação para a próxima conversa
 - Sprint 2 já começou pelo back-end.
 - O próximo foco natural é JWT + register/login.
 - A criação autenticada de artigo deve usar o usuário do token, e não confiar no front para definir autor.
+
+Atualizacao de continuidade - 2026-05-23
+
+Status geral
+- Sprint 2 avancou no back-end.
+- A base de autenticacao com JWT foi configurada.
+- Cadastro e login de usuarios foram implementados.
+- Criacao de artigo agora exige usuario autenticado.
+
+O que foi feito no back-end
+- Criada a classe `Config/JwtConfig.cs`.
+- Adicionada secao `Jwt` no `appsettings.json` com:
+  - `Issuer`
+  - `Audience`
+  - `SecretKey`
+  - `ExpirationInMinutes`
+- Adicionado pacote `Microsoft.AspNetCore.Authentication.JwtBearer`.
+- Configurado `AddAuthentication` com JWT Bearer.
+- Adicionado `app.UseAuthentication()` antes de `app.UseAuthorization()`.
+- Build validado com sucesso apos a configuracao de JWT.
+
+Endpoints de autenticacao criados
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
+DTOs de autenticacao criados
+- `RegisterUsuarioDto`
+- `LoginUsuarioDto`
+- `AuthResponseDto`
+
+Comportamento atual da autenticacao
+- Register cria usuario com email normalizado em minusculo.
+- Senha nao e salva pura no banco.
+- Senha e salva usando `PasswordHasher<Usuario>`.
+- Login valida email e senha.
+- Register e login retornam JWT.
+- Token inclui claims do usuario:
+  - `NameIdentifier` com o Id do usuario
+  - `Name` com o nome
+  - `Email` com o email
+
+Criacao autenticada de artigo
+- `POST /api/artigo` agora usa `[Authorize]`.
+- `CreateArtigoDto` nao recebe mais `AutorId`.
+- O autor do artigo agora vem do token JWT.
+- O controller le `ClaimTypes.NameIdentifier` para obter o Id do usuario autenticado.
+- O repository valida se o usuario existe e esta ativo antes de criar o artigo.
+- `GET /api/artigo` e `GET /api/artigo/{id}` continuam publicos para visitantes.
+
+Contrato atual para criar artigo
+- Requisicao precisa enviar header:
+  - `Authorization: Bearer {token}`
+- Body esperado:
+  - `titulo`
+  - `resumo`
+  - `conteudo`
+- `AutorId` nao deve mais ser enviado pelo front-end.
+
+Validacoes executadas
+- `dotnet build .\BrainHub.Api.sln` executado com sucesso.
+- Resultado final: 0 erros e 0 avisos.
+
+Estado atual da Sprint 2
+- Back-end de autenticacao basica esta implementado.
+- JWT esta configurado e sendo gerado.
+- Criacao de artigo autenticada esta implementada.
+- Ainda falta integrar autenticacao no front-end.
+
+Proximo passo recomendado
+1. Criar fluxo de login/cadastro no front-end.
+2. Criar service de autenticacao no front.
+3. Guardar token no front.
+4. Enviar token no header `Authorization`.
+5. Criar tela de novo artigo autenticada.
+6. Validar fluxo completo:
+   - register
+   - login
+   - criar artigo autenticado
+   - listar artigos
+   - abrir detalhe do artigo
+
+Observacao para a proxima conversa
+- Retomar pela integracao do front-end com os endpoints de auth.
+- O back-end ja nao confia mais em `AutorId` enviado pelo front para criar artigo.
+- A autoria correta agora vem do usuario autenticado pelo JWT.
