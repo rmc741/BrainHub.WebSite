@@ -13,3 +13,9 @@ export interface ArticleDetails {
   autor: string
   dataPublicacao: string
 }
+
+export interface CreateArticleRequest {
+  titulo: string
+  resumo?: string
+  conteudo: string
+}

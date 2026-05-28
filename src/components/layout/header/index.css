@@ -20,3 +20,18 @@
 .navigation_header{
    gap: 20px;
 }
+
+.auth_header {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.auth_header span {
+   color: #1f2937;
+   font-weight: 600;
+}
+
+.auth_header button {
+   color: var(--link-color);
+}
