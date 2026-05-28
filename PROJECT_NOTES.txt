@@ -3,8 +3,8 @@ BrainHub - Contexto de continuidade
 Data deste resumo: 2026-03-29
 
 Projetos
-- Front-end: D:\Projetos\BrainHub.WebSite
-- Back-end: D:\Projetos\BrainHub.Api
+- Front-end: C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.WebSite
+- Back-end: C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api
 
 Objetivo do produto
 - Criar uma plataforma/forum de artigos.
@@ -46,15 +46,15 @@ Back-end
 - Banco SQLite local em uso.
 
 Arquivos importantes do back-end
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Program.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Controllers\ArtigoController.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Domain\Artigo.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Domain\EntityConfiguration\ArtigoConfiguration.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Data\Repository\ArtigoRepository.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Data\Interface\IArtigoRepository.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\CreateArtigoDto.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\ArtigoListDto.cs
-- D:\Projetos\BrainHub.Api\BrainHub.Api\Application\Dtos\ArtigoDetailsDto.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Program.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Controllers\ArtigoController.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Domain\Artigo.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Domain\EntityConfiguration\ArtigoConfiguration.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Data\Repository\ArtigoRepository.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Data\Interface\IArtigoRepository.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Application\Dtos\CreateArtigoDto.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Application\Dtos\ArtigoListDto.cs
+- C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Application\Dtos\ArtigoDetailsDto.cs
 
 Estado atual do módulo de artigos no back-end
 - GET /api/artigo funcionando.
@@ -69,10 +69,10 @@ Migration e banco
 - Migration criada:
   - AddResumoToArtigo
 - Arquivos gerados em:
-  - D:\Projetos\BrainHub.Api\BrainHub.Api\Migrations
+  - C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\BrainHub.Api\Migrations
 - O banco já foi atualizado com a migration.
 - Foi criado também:
-  - D:\Projetos\BrainHub.Api\dotnet-tools.json
+  - C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api\dotnet-tools.json
 - O projeto agora usa dotnet-ef como ferramenta local do repositório.
 
 Observação importante de ambiente
@@ -391,3 +391,39 @@ Observacao para a proxima conversa
 - Retomar pela integracao do front-end com os endpoints de auth.
 - O back-end ja nao confia mais em `AutorId` enviado pelo front para criar artigo.
 - A autoria correta agora vem do usuario autenticado pelo JWT.
+
+Atualizacao de continuidade - 2026-05-27
+
+Ambiente
+- Caminhos locais atualizados:
+  - Front-end: C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.WebSite
+  - Back-end: C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api
+
+Status atual alinhado com o agente BrainHub
+- Sprint 1 concluida.
+- Fluxo publico de artigos funcionando no front-end e no back-end.
+- Back-end ja possui autenticacao JWT configurada.
+- Endpoints `POST /api/auth/register` e `POST /api/auth/login` implementados.
+- `POST /api/artigo` exige usuario autenticado.
+- Criacao de artigo usa o usuario vindo do token JWT.
+- Swagger configurado para aceitar token JWT pelo botao `Authorize`.
+- Front-end ja possui fluxo basico de cadastro, login, logout e persistencia do token.
+- Header exibe acoes conforme usuario autenticado ou visitante.
+- Tela `/artigos/novo` criada e protegida para usuario autenticado.
+- Criacao de artigo pelo front-end usando token JWT foi validada com sucesso.
+
+Proximo foco recomendado
+1. Lapidar a UI das telas de artigos, login, cadastro e novo artigo.
+2. Corrigir textos com problema de codificacao no front-end.
+3. Melhorar estados visuais de loading, erro e ausencia de dados.
+4. Revisar responsividade do header e dos formularios.
+5. Depois da lapidacao, iniciar comentarios em artigos.
+
+Fechamento validado pelo desenvolvedor
+- Cadastro/login no front-end funcionando.
+- Token salvo e reconhecido pelo header.
+- Link `Novo artigo` aparece para usuario autenticado.
+- Tela `/artigos/novo` funcionando.
+- Criacao de artigo pelo front usando token funcionando.
+- Artigo criado aparece na listagem.
+- Lapidacao visual da UI ficou combinada para a proxima conversa.

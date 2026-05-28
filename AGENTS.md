@@ -4,8 +4,8 @@ Este repositorio usa o agente `BrainHub` como referencia principal para suporte 
 
 ## Onde esta o contexto
 
-- Front-end: `D:\Projetos\BrainHub.WebSite`
-- Back-end relacionado: `D:\Projetos\BrainHub.Api`
+- Front-end: `C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.WebSite`
+- Back-end relacionado: `C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api`
 - Resumo de continuidade: `PROJECT_NOTES.txt`
 - Perfil do agente: `.agents/BrainHub.md`
 
@@ -23,7 +23,9 @@ BrainHub e uma plataforma/forum de artigos com foco em:
 - Rotas principais de artigos ja implementadas
 - Consumo atual da API em `GET /api/artigo` e `GET /api/artigo/{id}`
 - API base em `VITE_API_URL`, com fallback para `https://localhost:7072`
-- Proximo foco do MVP: fechar o fluxo completo de artigos e depois seguir para autenticacao e comentarios
+- Back-end ja possui autenticacao JWT, cadastro/login e criacao autenticada de artigos
+- Front-end ja possui cadastro, login, logout e tela de novo artigo autenticada
+- Proximo foco do MVP: lapidar a UI do fluxo de artigos/autenticacao e depois iniciar comentarios
 
 ## Prioridades ao trabalhar aqui
 

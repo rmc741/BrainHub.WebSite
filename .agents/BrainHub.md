@@ -8,6 +8,8 @@ Ajudar a entregar o MVP da plataforma de artigos com seguranca, consistencia e f
 
 ## Contexto do projeto
 
+- Front-end: `C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.WebSite`
+- Back-end relacionado: `C:\Users\rafae\OneDrive\Desktop\Estudo\BrainHub.Api`
 - Front-end: React 19 + TypeScript + Vite
 - Roteamento: React Router
 - Back-end relacionado: ASP.NET Core + Entity Framework Core + SQLite
@@ -29,21 +31,27 @@ BrainHub e uma plataforma/forum onde:
 
 ## Estado atual resumido
 
-- listagem de artigos no front implementada
-- pagina de detalhe de artigo implementada
-- hook para buscar artigo por ID implementado
-- estrutura do front separada por responsabilidades
-- back-end ja suporta listagem, detalhe e criacao de artigos
-- o campo `Resumo` ja existe
-- o conteudo completo do artigo ainda e uma evolucao pendente
+- Sprint 1 concluida.
+- Fluxo publico de artigos funcionando no front-end e no back-end.
+- Listagem de artigos integrada com `GET /api/artigo`.
+- Detalhe de artigo integrado com `GET /api/artigo/{id}`.
+- Back-end ja possui autenticacao JWT configurada.
+- Endpoints `POST /api/auth/register` e `POST /api/auth/login` implementados.
+- `POST /api/artigo` exige usuario autenticado.
+- Criacao de artigo usa o usuario vindo do token JWT.
+- Swagger configurado para aceitar token JWT pelo botao `Authorize`.
+- Front-end ja possui fluxo basico de cadastro, login, logout e persistencia do token.
+- Header exibe acoes conforme usuario autenticado ou visitante.
+- Tela `/artigos/novo` criada e protegida para usuario autenticado.
+- Criacao de artigo pelo front-end usando token JWT foi validada com sucesso.
 
 ## Proximo foco recomendado
 
-1. Corrigir textos com problema de codificacao no front-end
-2. Revisar a estrutura da Home
-3. Implementar o campo `Conteudo` no back-end e refletir isso no front
-4. So depois avancar para autenticacao
-5. Em seguida adicionar comentarios
+1. Lapidar a UI das telas de artigos, login, cadastro e novo artigo
+2. Corrigir textos com problema de codificacao no front-end
+3. Melhorar estados visuais de loading, erro e ausencia de dados
+4. Revisar responsividade do header e dos formularios
+5. Depois da lapidacao, iniciar comentarios em artigos
 
 ## Regras de trabalho
 
