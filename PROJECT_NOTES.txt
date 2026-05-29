@@ -427,3 +427,43 @@ Fechamento validado pelo desenvolvedor
 - Criacao de artigo pelo front usando token funcionando.
 - Artigo criado aparece na listagem.
 - Lapidacao visual da UI ficou combinada para a proxima conversa.
+
+Atualizacao de continuidade - 2026-05-29
+
+Status geral
+- Sprint 2/front-end foi lapidada visualmente.
+- Fluxo publico de artigos, autenticacao e criacao autenticada de artigo seguem funcionando.
+- Home foi refinada para virar uma entrada mais limpa do produto.
+- Build do front-end validado com sucesso usando `npm.cmd run build`.
+
+O que foi feito no front-end
+- UI base refinada com tokens e componentes visuais mais consistentes.
+- Header e footer lapidados.
+- Lista de artigos ganhou estados visuais de loading, erro e ausencia de dados.
+- Cards de artigos passaram a usar CSS proprio em vez de estilos inline.
+- Detalhe de artigo ganhou layout de leitura mais confortavel.
+- Telas de login, cadastro e novo artigo foram alinhadas visualmente.
+- Home deixou de renderizar as paginas completas de artigos, Sobre Nos e Contato.
+- Home agora exibe hero principal e previa de ate 4 artigos recentes.
+- Previa da Home usa os artigos de `GET /api/artigo`, ordenados por `dataPublicacao` decrescente.
+- Botao `Criar artigo` aparece na Home apenas para usuario autenticado.
+
+Fluxo de autenticacao ajustado
+- Visitante que tenta acessar `/artigos/novo` e redirecionado para `/login?redirect=/`.
+- Depois do login ou cadastro nesse fluxo, o usuario volta para a Home.
+- Login e cadastro acessados diretamente continuam redirecionando para `/artigos`.
+- Links entre login e cadastro preservam o parametro `redirect`.
+
+Validacoes executadas
+- `npm.cmd run build` executado com sucesso apos a lapidacao da Home.
+- `npm.cmd run build` executado com sucesso apos o ajuste de redirect.
+
+Pendencias conhecidas fora do commit
+- `yarn.lock` aparece modificado no working tree.
+- `package-lock.json` aparece como arquivo nao rastreado.
+- Esses arquivos nao fazem parte da lapidacao atual e devem ser revisados separadamente antes de qualquer commit.
+
+Proximo foco recomendado
+1. Encerrar a Sprint 2 com commit da lapidacao Home/auth.
+2. Validar visualmente o fluxo no navegador.
+3. Iniciar Sprint 3 com comentarios em artigos.

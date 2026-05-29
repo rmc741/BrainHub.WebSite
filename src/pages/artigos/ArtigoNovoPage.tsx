@@ -4,6 +4,8 @@ import { useAuth } from '../../hooks/useAuth'
 import { articleService } from '../../services/articleService'
 import './ArtigoNovoPage.css'
 
+const NEW_ARTICLE_REDIRECT = '/login?redirect=/'
+
 export function ArtigoNovoPage() {
   const navigate = useNavigate()
   const { token, isAuthenticated } = useAuth()
@@ -15,7 +17,7 @@ export function ArtigoNovoPage() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login', { replace: true })
+      navigate(NEW_ARTICLE_REDIRECT, { replace: true })
     }
   }, [isAuthenticated, navigate])
 
@@ -23,7 +25,7 @@ export function ArtigoNovoPage() {
     event.preventDefault()
 
     if (!token) {
-      navigate('/login', { replace: true })
+      navigate(NEW_ARTICLE_REDIRECT, { replace: true })
       return
     }
 

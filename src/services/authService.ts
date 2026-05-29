@@ -46,7 +46,7 @@ export const authService = {
       body: JSON.stringify(credentials),
     })
 
-    return parseAuthResponse(response, 'Erro ao cadastrar usuario')
+    return parseAuthResponse(response, 'Erro ao cadastrar usuário')
   },
 
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
