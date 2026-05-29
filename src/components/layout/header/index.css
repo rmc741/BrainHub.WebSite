@@ -1,24 +1,54 @@
-.logo_header img {
-  width: 40px;
-  height: auto;
-}
-
 .header,
-.navigation_header{
+.navigation_header {
    display: flex;
    align-items: center;
 }
 
 .header {
-   background-color: #fff9a4;
-   box-shadow: 1px 1px 4px #000000;
-   height: 56px;
+   position: sticky;
+   top: 0;
+   z-index: 10;
+   min-height: 64px;
    justify-content: space-between;
-   padding: 0 20px;
+   gap: 20px;
+   padding: 0 24px;
+   border-bottom: 1px solid #e5e7eb;
+   background-color: #ffffff;
+   box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
 }
 
-.navigation_header{
-   gap: 20px;
+.logo_header {
+   display: inline-flex;
+   align-items: center;
+   gap: 10px;
+   color: var(--color-text);
+   font-weight: 900;
+   text-decoration: none;
+}
+
+.logo_header:hover {
+   text-decoration: none;
+}
+
+.logo_header img {
+   width: 40px;
+   height: auto;
+}
+
+.navigation_header {
+   justify-content: flex-end;
+   flex-wrap: wrap;
+   gap: 8px 18px;
+}
+
+.navigation_header a {
+   color: var(--color-text);
+   font-weight: 700;
+   text-decoration: none;
+}
+
+.navigation_header a:hover {
+   color: var(--color-link);
 }
 
 .auth_header {
@@ -28,10 +58,54 @@
 }
 
 .auth_header span {
+   max-width: 160px;
+   overflow: hidden;
    color: #1f2937;
-   font-weight: 600;
+   font-weight: 700;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 .auth_header button {
-   color: var(--link-color);
+   min-height: 36px;
+   padding: 8px 12px;
+   border: 1px solid var(--color-border);
+   border-radius: 6px;
+   color: var(--color-text);
+   font-weight: 800;
+   background: #ffffff;
+}
+
+.auth_header button:hover {
+   border-color: #b7c0cf;
+}
+
+.header_cta {
+   min-height: 36px;
+   display: inline-flex;
+   align-items: center;
+   padding: 8px 12px;
+   border-radius: 6px;
+   color: #111827 !important;
+   background: var(--color-primary);
+}
+
+@media (max-width: 760px) {
+   .header {
+      min-height: auto;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 14px 20px;
+   }
+
+   .navigation_header {
+      width: 100%;
+      justify-content: flex-start;
+   }
+
+   .auth_header {
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+   }
 }

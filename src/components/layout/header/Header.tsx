@@ -6,21 +6,22 @@ export function Header() {
   const { user, isAuthenticated, logout } = useAuth()
 
   return (
-    <div className="header" id="header">
-      <div className="logo_header">
-        <img src="criatividade.png" alt="BrainHub Logo" />
-      </div>
+    <header className="header" id="header">
+      <Link className="logo_header" to="/" aria-label="Ir para a página inicial">
+        <img src="criatividade.png" alt="" />
+        <span>BrainHub</span>
+      </Link>
 
-      <div className="navigation_header">
+      <nav className="navigation_header" aria-label="Navegação principal">
         <Link to="/">Home</Link>
         <Link to="/artigos">Artigos</Link>
         {isAuthenticated && <Link to="/artigos/novo">Novo artigo</Link>}
-        <Link to="/sobre-nos">Sobre Nos</Link>
+        <Link to="/sobre-nos">Sobre Nós</Link>
         <Link to="/contato">Contato</Link>
 
         {isAuthenticated ? (
           <div className="auth_header">
-            <span>{user?.nome}</span>
+            <span title={user?.nome}>{user?.nome}</span>
             <button type="button" onClick={logout}>
               Sair
             </button>
@@ -28,10 +29,10 @@ export function Header() {
         ) : (
           <div className="auth_header">
             <Link to="/login">Entrar</Link>
-            <Link to="/cadastro">Cadastrar</Link>
+            <Link className="header_cta" to="/cadastro">Cadastrar</Link>
           </div>
         )}
-      </div>
-    </div>
+      </nav>
+    </header>
   )
 }

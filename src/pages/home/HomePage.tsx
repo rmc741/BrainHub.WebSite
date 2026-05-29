@@ -5,8 +5,10 @@ import { SobreNosPage } from "../sobreNos/SobreNosPage";
 export function HomePage() {
   return (
     <div>
-      <h1>Welcome to BrainHub</h1>
-      <p>Your gateway to knowledge and creativity.</p>
+      <section className="page-shell home-hero">
+        <h1>Conhecimento para criar, aprender e compartilhar.</h1>
+        <p>Leia artigos da comunidade, publique suas ideias e acompanhe novas discussões em um só lugar.</p>
+      </section>
 
       <ArtigosPage />
       <SobreNosPage />

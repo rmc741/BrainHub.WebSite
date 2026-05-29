@@ -49,16 +49,23 @@ export function ArtigoNovoPage() {
   }
 
   if (!isAuthenticated) {
-    return <p>Redirecionando para login...</p>
+    return (
+      <div className="state-panel">
+        <strong>Redirecionando para login</strong>
+        <p>Você precisa entrar para publicar um artigo.</p>
+      </div>
+    )
   }
 
   return (
     <main className="article-form-page">
       <form className="article-form" onSubmit={handleSubmit}>
-        <h1>Novo artigo</h1>
+        <div>
+          <h1>Novo artigo</h1>
+        </div>
 
         <div className="article-field">
-          <label htmlFor="titulo">Titulo</label>
+          <label htmlFor="titulo">Título</label>
           <input
             id="titulo"
             type="text"
@@ -79,7 +86,7 @@ export function ArtigoNovoPage() {
         </div>
 
         <div className="article-field">
-          <label htmlFor="conteudo">Conteudo</label>
+          <label htmlFor="conteudo">Conteúdo</label>
           <textarea
             id="conteudo"
             value={conteudo}
@@ -91,10 +98,10 @@ export function ArtigoNovoPage() {
         {erro && <p className="article-error">{erro}</p>}
 
         <div className="article-actions">
-          <Link className="article-cancel" to="/artigos">
+          <Link className="button button-secondary" to="/artigos">
             Cancelar
           </Link>
-          <button className="article-submit" type="submit" disabled={loading}>
+          <button className="button button-primary article-submit" type="submit" disabled={loading}>
             {loading ? 'Publicando...' : 'Publicar'}
           </button>
         </div>

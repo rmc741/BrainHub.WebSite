@@ -1,7 +1,7 @@
 export function Footer() {
   return (
-    <footer>
-      <p>© 2024 BrainHub. All rights reserved.</p>
+    <footer className="footer">
+      <p>© 2026 BrainHub. Todos os direitos reservados.</p>
     </footer>
   )
 }

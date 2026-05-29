@@ -6,9 +6,11 @@ import AppRouteConfig from './config/RouteConfig'
 function App() {
 
   return (
-    <div>
+    <div className="app-shell">
       <Header/>
-      <AppRouteConfig />
+      <main className="app-main">
+        <AppRouteConfig />
+      </main>
       <Footer/>
     </div>
   )

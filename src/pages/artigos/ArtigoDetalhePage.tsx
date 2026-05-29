@@ -1,57 +1,66 @@
 import { Link, useParams } from 'react-router-dom'
 import { useArticleById } from '../../hooks/useArticleById'
+import './ArtigoDetalhePage.css'
 
 export function ArtigoDetalhePage() {
   const { id } = useParams<{ id: string }>()
   const { article, loading, erro } = useArticleById(id ? parseInt(id) : undefined)
 
-  if (loading) return <p>Carregando artigo...</p>
-  if (erro) return <p>Erro: {erro}</p>
-  if (!article) return <p>Artigo não encontrado</p>
+  if (loading) {
+    return (
+      <div className="state-panel">
+        <strong>Carregando artigo</strong>
+        <p>Estamos buscando o conteúdo completo.</p>
+      </div>
+    )
+  }
+
+  if (erro) {
+    return (
+      <div className="state-panel state-panel-error">
+        <strong>Não foi possível carregar o artigo</strong>
+        <p>{erro}</p>
+      </div>
+    )
+  }
+
+  if (!article) {
+    return (
+      <div className="state-panel">
+        <strong>Artigo não encontrado</strong>
+        <p>O conteúdo pode ter sido removido ou o endereço está incorreto.</p>
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <nav style={{ marginBottom: '20px' }}>
-        <Link to="/artigos" style={{ color: '#007bff', textDecoration: 'none' }}>
+    <section className="article-detail-page">
+      <nav className="article-detail-nav">
+        <Link to="/artigos">
           ← Voltar para artigos
         </Link>
       </nav>
 
-      <article>
+      <article className="article-detail">
         <h1>{article.titulo}</h1>
 
         {article.resumo && (
-          <p style={{
-            fontSize: '1.2em',
-            color: '#666',
-            margin: '16px 0',
-            fontStyle: 'italic'
-          }}>
+          <p className="article-detail-summary">
             {article.resumo}
           </p>
         )}
 
-        <p style={{ color: '#555', marginBottom: '8px' }}>
-          Por {article.autor}
-        </p>
+        <div className="article-detail-meta">
+          <span>Por {article.autor}</span>
+          <time dateTime={article.dataPublicacao}>
+            Publicado em {new Date(article.dataPublicacao).toLocaleDateString('pt-BR')}
+          </time>
+        </div>
 
-        <small style={{
-          color: '#999',
-          display: 'block',
-          marginBottom: '24px'
-        }}>
-          Publicado em {new Date(article.dataPublicacao).toLocaleDateString('pt-BR')}
-        </small>
-
-        <div style={{
-          lineHeight: '1.8',
-          fontSize: '1.1em',
-          color: '#333',
-          whiteSpace: 'pre-line'
-        }}>
+        <div className="article-detail-content">
           <p>{article.conteudo}</p>
         </div>
       </article>
-    </div>
+    </section>
   )
 }
