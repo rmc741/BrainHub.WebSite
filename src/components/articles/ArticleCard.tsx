@@ -18,9 +18,12 @@ export function ArticleCard({ article }: ArticleCardProps) {
           )}
         </div>
 
-        <time dateTime={article.dataPublicacao}>
-          Publicado em {new Date(article.dataPublicacao).toLocaleDateString('pt-BR')}
-        </time>
+        <div className="article-card-footer">
+          <time dateTime={article.dataPublicacao}>
+            Publicado em {new Date(article.dataPublicacao).toLocaleDateString('pt-BR')}
+          </time>
+          <span>Ler artigo</span>
+        </div>
       </Link>
     </article>
   )

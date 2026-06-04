@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useAuth } from "../../../hooks/useAuth"
 import "./index.css"
+
+const getNavigationLinkClass = ({ isActive }: { isActive: boolean }) =>
+  isActive ? "navigation_link navigation_link_active" : "navigation_link"
 
 export function Header() {
   const { user, isAuthenticated, logout } = useAuth()
@@ -13,11 +16,15 @@ export function Header() {
       </Link>
 
       <nav className="navigation_header" aria-label="Navegação principal">
-        <Link to="/">Home</Link>
-        <Link to="/artigos">Artigos</Link>
-        {isAuthenticated && <Link to="/artigos/novo">Novo artigo</Link>}
-        <Link to="/sobre-nos">Sobre Nós</Link>
-        <Link to="/contato">Contato</Link>
+        <NavLink className={getNavigationLinkClass} end to="/">Home</NavLink>
+        <NavLink className={getNavigationLinkClass} end to="/artigos">Artigos</NavLink>
+        {isAuthenticated && (
+          <NavLink className={getNavigationLinkClass} to="/artigos/novo">
+            Novo artigo
+          </NavLink>
+        )}
+        <NavLink className={getNavigationLinkClass} to="/sobre-nos">Sobre Nós</NavLink>
+        <NavLink className={getNavigationLinkClass} to="/contato">Contato</NavLink>
 
         {isAuthenticated ? (
           <div className="auth_header">

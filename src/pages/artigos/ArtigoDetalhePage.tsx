@@ -37,7 +37,7 @@ export function ArtigoDetalhePage() {
     <section className="article-detail-page">
       <nav className="article-detail-nav">
         <Link to="/artigos">
-          ← Voltar para artigos
+          Voltar para artigos
         </Link>
       </nav>
 

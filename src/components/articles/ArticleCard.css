@@ -13,7 +13,7 @@
 }
 
 .article-card-link {
-  min-height: 156px;
+  min-height: 164px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,7 +39,28 @@
   line-height: 1.6;
 }
 
+.article-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .article-card time {
   color: #7b8495;
   font-size: 0.92rem;
+}
+
+.article-card-footer span {
+  flex: 0 0 auto;
+  color: var(--color-link);
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .article-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
 }

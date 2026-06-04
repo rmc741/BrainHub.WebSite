@@ -49,6 +49,26 @@
 
 .navigation_header a:hover {
    color: var(--color-link);
+   text-decoration: none;
+}
+
+.navigation_link {
+   min-height: 36px;
+   display: inline-flex;
+   align-items: center;
+   border-bottom: 3px solid transparent;
+}
+
+.navigation_link_active {
+   color: var(--color-text) !important;
+   border-bottom-color: var(--color-primary);
+}
+
+.navigation_header a:focus-visible,
+.auth_header button:focus-visible {
+   outline: 3px solid rgba(244, 196, 48, 0.75);
+   outline-offset: 3px;
+   border-radius: 6px;
 }
 
 .auth_header {
