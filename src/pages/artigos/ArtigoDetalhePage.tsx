@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { CommentsSection } from '../../components/comments/CommentsSection'
 import { useArticleById } from '../../hooks/useArticleById'
 import './ArtigoDetalhePage.css'
 
@@ -61,6 +62,8 @@ export function ArtigoDetalhePage() {
           <p>{article.conteudo}</p>
         </div>
       </article>
+
+      <CommentsSection articleId={article.id} />
     </section>
   )
 }

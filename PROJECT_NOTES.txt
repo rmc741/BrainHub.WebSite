@@ -467,3 +467,61 @@ Proximo foco recomendado
 1. Encerrar a Sprint 2 com commit da lapidacao Home/auth.
 2. Validar visualmente o fluxo no navegador.
 3. Iniciar Sprint 3 com comentarios em artigos.
+
+Atualizacao de continuidade - 2026-06-13
+
+Status geral
+- Sprint 2 encerrada e alteracoes anteriores commitadas.
+- Sprint 3 iniciada com o fluxo principal de comentarios em artigos.
+- Listagem publica e criacao autenticada de comentarios funcionando de ponta a ponta.
+
+O que foi feito no back-end
+- Entidade `Comentario` criada com:
+  - `Id`
+  - `Conteudo`
+  - `ArtigoId`
+  - `AutorId`
+  - `DataCriacao`
+- Relacionamentos adicionados entre comentario, artigo e usuario.
+- Ao excluir um artigo, seus comentarios usam `DeleteBehavior.Cascade`.
+- Exclusao de usuario com comentarios usa `DeleteBehavior.Restrict`.
+- Conteudo do comentario limitado a 2000 caracteres.
+- DTOs `ComentarioDto` e `CreateComentarioDto` criados.
+- `IComentarioRepository` e `ComentarioRepository` implementados.
+- `ComentarioController` criado.
+- Endpoints disponiveis:
+  - `GET /api/artigo/{artigoId}/comentarios`
+  - `POST /api/artigo/{artigoId}/comentarios`
+- Listagem de comentarios permanece publica.
+- Criacao de comentario exige JWT e usa o usuario autenticado como autor.
+- Migration `AddComentarios` criada.
+- Banco SQLite local atualizado com a estrutura de comentarios.
+
+O que foi feito no front-end
+- Tipos de comentarios adicionados em `src/types/Comment.ts`.
+- Integracao com a API criada em `src/services/commentService.ts`.
+- Hook `useComments` criado para carregar e atualizar comentarios.
+- Componente reutilizavel `CommentsSection` adicionado ao detalhe do artigo.
+- Visitantes podem visualizar os comentarios.
+- Usuarios autenticados podem publicar comentarios.
+- Visitante recebe link para login e retorna ao mesmo artigo depois de entrar.
+- Lista possui estados de loading, erro, tentativa novamente e ausencia de dados.
+- Comentario publicado aparece imediatamente na lista.
+- Layout responsivo criado para formulario e listagem.
+- Textos longos sem espacos quebram linha dentro do card sem gerar rolagem horizontal.
+
+Validacao realizada
+- Fluxo de listar e publicar comentarios validado visualmente pelo desenvolvedor.
+- Builds executados com sucesso durante a implementacao.
+- Por decisao do desenvolvedor, o agente nao deve executar o build do front-end nas proximas tarefas; essa validacao ficara com o desenvolvedor durante os testes.
+
+Proximo foco recomendado
+1. Adicionar edicao do proprio comentario.
+2. Adicionar exclusao do proprio comentario.
+3. Definir e implementar edicao/exclusao do proprio artigo.
+4. Revisar mensagens com problemas antigos de codificacao.
+
+Observacao para a proxima conversa
+- Retomar a Sprint 3 pelas regras de autoria para editar e excluir comentarios.
+- O back-end deve sempre obter o autor pelo JWT e validar que o comentario pertence ao usuario autenticado.
+- O banco local e arquivos temporarios do SQLite nao fazem parte dos commits de codigo.
