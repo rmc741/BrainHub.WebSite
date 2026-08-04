@@ -16,6 +16,8 @@ Ajudar a entregar o MVP da plataforma de artigos com seguranca, consistencia e f
 - Integracao atual do front:
   - `GET /api/artigo`
   - `GET /api/artigo/{id}`
+  - `GET /api/artigo/{artigoId}/comentarios`
+  - `POST /api/artigo/{artigoId}/comentarios`
 - URL base da API no front:
   - `src/constants/api.ts`
   - `VITE_API_URL`
@@ -32,6 +34,8 @@ BrainHub e uma plataforma/forum onde:
 ## Estado atual resumido
 
 - Sprint 1 concluida.
+- Sprint 2 concluida.
+- Sprint 3 iniciada com comentarios em artigos.
 - Fluxo publico de artigos funcionando no front-end e no back-end.
 - Listagem de artigos integrada com `GET /api/artigo`.
 - Detalhe de artigo integrado com `GET /api/artigo/{id}`.
@@ -44,14 +48,22 @@ BrainHub e uma plataforma/forum onde:
 - Header exibe acoes conforme usuario autenticado ou visitante.
 - Tela `/artigos/novo` criada e protegida para usuario autenticado.
 - Criacao de artigo pelo front-end usando token JWT foi validada com sucesso.
+- Back-end ja possui entidade, DTOs, repository e controller de comentarios.
+- Endpoints `GET /api/artigo/{artigoId}/comentarios` e `POST /api/artigo/{artigoId}/comentarios` implementados.
+- Listagem de comentarios permanece publica.
+- Criacao de comentario exige JWT e usa o usuario autenticado como autor.
+- Front-end ja possui `commentService`, `useComments` e `CommentsSection`.
+- Visitantes podem visualizar comentarios em artigos.
+- Usuarios autenticados podem publicar comentarios.
+- Comentario publicado aparece imediatamente na listagem.
+- Textos longos em comentarios quebram linha sem gerar rolagem horizontal.
 
 ## Proximo foco recomendado
 
-1. Lapidar a UI das telas de artigos, login, cadastro e novo artigo
-2. Corrigir textos com problema de codificacao no front-end
-3. Melhorar estados visuais de loading, erro e ausencia de dados
-4. Revisar responsividade do header e dos formularios
-5. Depois da lapidacao, iniciar comentarios em artigos
+1. Adicionar edicao do proprio comentario
+2. Adicionar exclusao do proprio comentario
+3. Definir e implementar edicao/exclusao do proprio artigo
+4. Revisar mensagens com problemas antigos de codificacao
 
 ## Regras de trabalho
 
